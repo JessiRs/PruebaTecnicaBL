@@ -2,8 +2,9 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.cdimascio.dotenv.Dotenv;
-
-
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.time.Duration;
 
 public class Login {
     Dotenv dotenv = Dotenv.configure().load();
@@ -11,21 +12,18 @@ public class Login {
     String pass = dotenv.get("PASS_TEST");
 
     @Test
-    public void LoginTrue() throws InterruptedException {
+    public void LoginExitoso() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         driver.get("https://quotes.toscrape.com");
-        System.out.println("Usuario: " + user);
-        System.out.println("Password: " + pass);
         driver.findElement(By.cssSelector("a[href='/login']")).click();
         driver.findElement(By.id("username")).sendKeys(user);
         driver.findElement(By.id("password")).sendKeys(pass);
-        Thread.sleep(2000);
         driver.findElement(By.cssSelector("input[value=Login]")).click();
-        Thread.sleep(3000);
-        driver.findElement(By.cssSelector("a[href='/logout']")).click();
-        Thread.sleep(4000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a[href='/']")));
+        System.out.println("Login exitoso");
         driver.quit();
-
     }
 }
 
