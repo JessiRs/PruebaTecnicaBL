@@ -12,7 +12,7 @@ public class Login {
     String pass = dotenv.get("PASS_TEST");
 
     @Test
-    public void LoginExitoso() throws InterruptedException {
+    public void LoginSuccesful() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -22,7 +22,7 @@ public class Login {
         driver.findElement(By.id("password")).sendKeys(pass);
         driver.findElement(By.cssSelector("input[value=Login]")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a[href='/']")));
-        System.out.println("Login exitoso");
+        System.out.println("Login succesful");
         driver.quit();
     }
 }
