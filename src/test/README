@@ -1,4 +1,0 @@
-Automatización Quotes
-
-URL: https://quotes.toscrape.com/
-Credenciales: Cambiar el nombre del archivo ".envExample" por ".env" para que el test se ejecute correctamente
